@@ -27,7 +27,7 @@ export function Ticker() {
 
     return (
         <div className="ticker-container">
-            <h1>Welcome to pywebview!</h1>
+            <h1>Welcome to Ceylon DEV22!</h1>
 
             <em>
                 You can freely communicate between Javascript with Python without a HTTP
