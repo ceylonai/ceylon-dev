@@ -1,12 +1,12 @@
 import {useState} from 'react'
 import {Play, Search} from 'lucide-react'
-import {Button} from "@/components/ui/button"
-import {Textarea} from "@/components/ui/textarea"
-import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs"
-import {Card, CardContent} from "@/components/ui/card"
-import {ScrollArea} from "@/components/ui/scroll-area"
-import {ConfigForm} from "@/pages/components/config-form.tsx";
-import {FileTree} from "@/pages/components/file-tree.tsx";
+import {Button} from "@/components/ui/button.tsx"
+import {Textarea} from "@/components/ui/textarea.tsx"
+import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs.tsx"
+import {Card, CardContent} from "@/components/ui/card.tsx"
+import {ScrollArea} from "@/components/ui/scroll-area.tsx"
+import {ConfigForm} from "@/pages/project/dashboard/components/config-form.tsx";
+import {FileTree} from "@/pages/project/dashboard/components/file-tree.tsx";
 
 export default function CodeAnalysisUI() {
     const [config, setConfig] = useState({

@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "build": "npm run clean && npm run build-frontend && run-script-os",
+    "build:watch": "npm run build-frontend --watch",
     "build:macos": "./venv/bin/python build-macos.py py2app",
     "build:windows": ".\\venv\\Scripts\\pyinstaller build-windows.spec",
     "build:linux": "./venv/bin/pyinstaller build-linux.spec",

@@ -2,7 +2,16 @@ import os
 import threading
 from time import time
 
+import watchfiles
 import webview
+
+
+def open_file_dialog():
+    for window in webview.windows:
+        result = window.create_file_dialog(
+            webview.FOLDER_DIALOG, allow_multiple=False, directory=os.getcwd()
+        )
+        return result
 
 
 class Api:
@@ -59,14 +68,19 @@ def set_interval(interval):
 entry = get_entrypoint()
 
 
-@set_interval(1)
 def update_ticker():
     if len(webview.windows) > 0:
-        webview.windows[0].evaluate_js(
-            'window.pywebview.state.setTicker("%d")' % time()
-        )
+
+        current_path = os.path.dirname(__file__)
+        print(current_path)
+
+        for change in watchfiles.watch("./gui"):
+            ## using this instead of window.load_url() because that didn't work for me
+            window.evaluate_js('window.location.reload()')
+            print(f"File {change} changed at {time()}")
 
 
 if __name__ == "__main__":
-    window = webview.create_window("pywebview-react boilerplate", entry, js_api=Api())
+    window = webview.create_window("Ceylon AI - Dev Friend", entry, js_api=Api())
+    window.expose(open_file_dialog)
     webview.start(update_ticker, debug=True)
