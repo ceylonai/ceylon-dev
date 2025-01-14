@@ -39,11 +39,17 @@ export default function OpenPage() {
                         </div>
                         <Button
                             onClick={async () => {
-                                console.log("open file dialog",  window.pywebview!.api)
-                                console.log("open file dialog",  window.pywebview!.api.open_file_dialog)
-                                console.log("open file dialog",  window)
-                                const res =  await window.pywebview!.api.open_file_dialog()
-                                console.log("open file dialog",  res)
+                                console.log("open file dialog", window.pywebview!.api)
+                                console.log("open file dialog", window.pywebview!.api.open_file_dialog)
+                                console.log("open file dialog", window)
+                                const res = await window.pywebview!.api.open_file_dialog()
+                                if (res === null || res.length > 0) {
+                                    console.log("open file dialog", res)
+                                    console.log(window.pywebview!.api.open_project)
+                                    await window.pywebview!.api.call("open_project", res[0])
+                                    await window.pywebview!.api.call("process_codebase", res[0])
+                                }
+
                             }}
                             variant="secondary"
                             className="bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700">
@@ -59,26 +65,7 @@ export default function OpenPage() {
                                 path: "G:\\Projects\\myrag\\ceylon-ai-rag",
                                 icon: "C",
                             },
-                            {
-                                name: "rk-core",
-                                path: "L:\\projects\\Ceylon\\rk-core",
-                                icon: "R",
-                            },
-                            {
-                                name: "ceylon-app",
-                                path: "G:\\Projects\\myrag\\ceylon-app",
-                                icon: "C",
-                            },
-                            {
-                                name: "ceylon-ai-app",
-                                path: "G:\\Projects\\myrag\\ceylon-ai-app",
-                                icon: "C",
-                            },
-                            {
-                                name: "mistral",
-                                path: "F:\\projects\\research\\mistral",
-                                icon: "M",
-                            },
+
                         ].map((project) => (
                             <div
                                 key={project.name}
