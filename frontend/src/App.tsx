@@ -1,10 +1,10 @@
 import './App.css'
-import {Ticker} from "./components/ticker";
+import CodeAnalysisUI from "@/pages/inext.tsx";
 
 function App() {
   return (
     <>
-      <Ticker/>
+      <CodeAnalysisUI/>
     </>
   )
 }
